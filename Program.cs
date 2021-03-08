@@ -10,14 +10,33 @@ namespace planyourheist
             Console.WriteLine("");
 
             Team myTeam = new Team();
-            int bankDifficulty;
+            int bankDifficulty = 0;
             Console.Write("Enter the bank difficulty: ");
-            bankDifficulty = Int32.Parse(Console.ReadLine());
+
+            while (true)
+            {
+                try
+                {
+                    bankDifficulty = Int32.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.Write("Please enter a valid number: ");
+                }
+            }
+
+
+
+
 
             while (true)
             {
                 Console.Write("Enter your team member name: ");
                 string name = Console.ReadLine();
+                int skill = 0;
+                double courage = 0.0;
+
                 if (name == "")
                 {
                     break;
@@ -25,9 +44,50 @@ namespace planyourheist
                 else
                 {
                     Console.Write("Enter your team members skill level: ");
-                    int skill = Int32.Parse(Console.ReadLine());
+                    while (true)
+                    {
+                        try
+                        {
+                            skill = Int32.Parse(Console.ReadLine());
+                            if (skill >= 0)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.Write("Please enter a positive number: ");
+                                skill = Int32.Parse(Console.ReadLine());
+                            }
+
+                        }
+                        catch
+                        {
+                            Console.Write("Please enter a positive number: ");
+                        }
+                    }
+
                     Console.Write("Enter your team members courage factor (0.0 - 2.0): ");
-                    double courage = Double.Parse(Console.ReadLine());
+
+                    while (true)
+                    {
+                        try
+                        {
+                            courage = Double.Parse(Console.ReadLine());
+                            if (courage >= 0 && courage <= 2.0)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.Write("Please enter a number between 0.0 and 2.0: ");
+                                skill = Int32.Parse(Console.ReadLine());
+                            }
+                        }
+                        catch
+                        {
+                            Console.Write("Please enter a number between 0.0 and 2.0: ");
+                        }
+                    }
 
                     TeamMember criminal = new TeamMember()
                     {
@@ -37,8 +97,6 @@ namespace planyourheist
                     };
 
                     myTeam.AddTeamMember(criminal);
-
-                    // Console.WriteLine($"{name.Name} has a skill level of {name.Skill} and a courage factor of {name.Courage}");
                 }
             }
 
