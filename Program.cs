@@ -8,11 +8,6 @@ namespace planyourheist
         {
             Console.WriteLine("Plan Your Heist!");
             Console.WriteLine("");
-            int bankDifficulty = 100;
-            Random r = new Random();
-            int luck = r.Next(-10, 10);
-
-            bankDifficulty = bankDifficulty + luck;
 
             Team myTeam = new Team();
 
@@ -44,20 +39,36 @@ namespace planyourheist
                 }
             }
 
-            Console.WriteLine($"You have {myTeam.Count} members in your team.");
-            // myTeam.PrintTeam();
-            int teamSkill = myTeam.SkillSum();
+            int trialRuns;
+            Console.Write("How many trial runs would you like to do? ");
+            trialRuns = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Your team has a combined skill level of {teamSkill}, and the bank difficulty is set at {bankDifficulty}");
+            while (trialRuns > 0)
+            {
+                int bankDifficulty = 100;
+                Random r = new Random();
+                int luck = r.Next(-10, 10);
+                bankDifficulty = bankDifficulty + luck;
 
-            if (teamSkill > bankDifficulty)
-            {
-                Console.WriteLine("You did it!");
+                Console.WriteLine($"You have {myTeam.Count} members in your team.");
+                // myTeam.PrintTeam();
+                int teamSkill = myTeam.SkillSum();
+
+                Console.WriteLine($"Your team has a combined skill level of {teamSkill}, and the bank difficulty is set at {bankDifficulty}");
+
+                if (teamSkill > bankDifficulty)
+                {
+                    Console.WriteLine("You did it!");
+                }
+                else
+                {
+                    Console.WriteLine("You failed!");
+                }
+
+                trialRuns--;
             }
-            else
-            {
-                Console.WriteLine("You failed!");
-            }
+
+
         }
     }
 }
