@@ -8,24 +8,39 @@ namespace planyourheist
         {
             Console.WriteLine("Plan Your Heist!");
             Console.WriteLine("");
-            Console.Write("Enter your team member name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter your team members skill level: ");
-            int skill = Int32.Parse(Console.ReadLine());
-            Console.Write("Enter your team members courage factor (0.0 - 2.0): ");
-            double courage = Double.Parse(Console.ReadLine());
 
-            TeamMember numberOne = new TeamMember()
+            Team myTeam = new Team();
+
+            while (true)
             {
-                Name = name,
-                Skill = skill,
-                Courage = courage
-            };
+                Console.Write("Enter your team member name: ");
+                string name = Console.ReadLine();
+                if (name == "")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Write("Enter your team members skill level: ");
+                    int skill = Int32.Parse(Console.ReadLine());
+                    Console.Write("Enter your team members courage factor (0.0 - 2.0): ");
+                    double courage = Double.Parse(Console.ReadLine());
 
-            Console.WriteLine($"{numberOne.Name} has a skill level of {numberOne.Skill} and a courage factor of {numberOne.Courage}");
+                    TeamMember criminal = new TeamMember()
+                    {
+                        Name = name,
+                        Skill = skill,
+                        Courage = courage
+                    };
 
+                    myTeam.AddTeamMember(criminal);
 
+                    // Console.WriteLine($"{name.Name} has a skill level of {name.Skill} and a courage factor of {name.Courage}");
+                }
+            }
 
+            Console.WriteLine($"You have {myTeam.Count} members in your team.");
+            myTeam.PrintTeam();
         }
     }
 }
