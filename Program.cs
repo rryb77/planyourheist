@@ -9,6 +9,10 @@ namespace planyourheist
             Console.WriteLine("Plan Your Heist!");
             Console.WriteLine("");
             int bankDifficulty = 100;
+            Random r = new Random();
+            int luck = r.Next(-10, 10);
+
+            bankDifficulty = bankDifficulty + luck;
 
             Team myTeam = new Team();
 
@@ -43,6 +47,8 @@ namespace planyourheist
             Console.WriteLine($"You have {myTeam.Count} members in your team.");
             // myTeam.PrintTeam();
             int teamSkill = myTeam.SkillSum();
+
+            Console.WriteLine($"Your team has a combined skill level of {teamSkill}, and the bank difficulty is set at {bankDifficulty}");
 
             if (teamSkill > bankDifficulty)
             {
