@@ -33,5 +33,14 @@ namespace planyourheist
                 Console.WriteLine($"{kvp.Value.Name} has a skill level of {kvp.Value.Skill} and a courage factor of {kvp.Value.Courage} ");
             }
         }
+        public int SkillSum()
+        {
+            int totalSkill = 0;
+            foreach (KeyValuePair<string, TeamMember> kvp in _MyTeam)
+            {
+                totalSkill = totalSkill + kvp.Value.Skill;
+            }
+            return totalSkill;
+        }
     }
 }

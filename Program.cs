@@ -8,6 +8,7 @@ namespace planyourheist
         {
             Console.WriteLine("Plan Your Heist!");
             Console.WriteLine("");
+            int bankDifficulty = 100;
 
             Team myTeam = new Team();
 
@@ -40,7 +41,17 @@ namespace planyourheist
             }
 
             Console.WriteLine($"You have {myTeam.Count} members in your team.");
-            myTeam.PrintTeam();
+            // myTeam.PrintTeam();
+            int teamSkill = myTeam.SkillSum();
+
+            if (teamSkill > bankDifficulty)
+            {
+                Console.WriteLine("You did it!");
+            }
+            else
+            {
+                Console.WriteLine("You failed!");
+            }
         }
     }
 }
